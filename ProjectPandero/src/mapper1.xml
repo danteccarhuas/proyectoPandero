@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="dawi1">
+	
+	 
+
+	<!-- Reportes -->
+	<!--  Para los combos de los reportes -->	
+	<!-- lista paises -->
+	<select id="SQL_traerPais"   resultType="paisBeanIbatis">
+			SELECT 
+				idPais as idPais,
+				descripcion as descripcion
+			FROM
+				pais	
+				
+	</select>
+	
+	   <select id="SQL_listaTipoObligacion" resultType="tipoObligacionBeanIbatis">
+     	SELECT 
+     		   idtipo_obligacion as idtipo_obligacion,
+     		   descripcion as descripcion
+     	FROM 
+     		   tipo_obligacion	   	
+     </select>
+	
+	<!-- Reporte de socios segun pais -->
+	<select id="SQL_reportesConsultaSocio" parameterType="int"	resultType="socioBeanIbatis">
+		SELECT 
+				idsocio as idsocio,
+				nombres as nombres,
+				apellido_paterno as apellido_paterno,
+				apellido_materno as apellido_materno,
+				documento as documento,
+				correo as correo									
+		FROM socio
+		WHERE idPais = #{idPais} 	
+	</select>	
+
+
+<select id="SQL_reportesConsultaObligacion" parameterType="int" resultType="obligacionBeanIbatis1">
+			SELECT
+				o.idobligaciones as idobligaciones,
+				o.fecha_registro as fecha_registro,
+				o.montoTotal  as montoTotal,
+				t.descripcion as descripcion,
+				o.cuotas as cuotas,
+				s.nombres as nombres,
+				s.apellido_paterno as apellido_paterno
+			FROM 
+				obligaciones o 
+				INNER JOIN socio s on o.idsocio = s.idsocio 
+				INNER JOIN tipo_obligacion t on o.idtipo_obligacion = t.idtipo_obligacion
+			WHERE 
+				t.idtipo_obligacion = #{tipo} 
+	</select>
+	
+
+</mapper>
+    
+

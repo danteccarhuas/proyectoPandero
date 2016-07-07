@@ -1,0 +1,605 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<mapper namespace="dawi">
+	
+<!-- metodo que trae el tipo de documento en combobox -->
+	<select id="SQL_traerTipoDocumento" 	 
+						    resultType="tipoDocumentoBeanIbatis">
+			SELECT 
+				idtipodocumento as idtipodocumento,
+				descripcion as descripcion
+			FROM
+				tipodocumento	
+		
+	</select>
+	
+	<!-- lista paises -->
+	<select id="SQL_traerPais" 	 
+						    resultType="paisBeanIbatis">
+			SELECT 
+				idPais as idPais,
+				descripcion as descripcion
+			FROM
+				pais	
+				
+	</select>
+	
+<!-- combos de departamento -->
+	<select id="SQL_traeDepartamentos" 	 
+						    resultType="departamentoBeanIbatis">
+			SELECT 				
+				iddepartamento as iddepartamento,
+				descripcion_departamento as descripcion_departamento
+			FROM
+				departamento
+	
+	</select>
+	
+	<!-- combo de provincia -->
+	<select id="SQL_traeProvincias" parameterType="java.lang.Integer"	 
+						    resultType="provinciaBeanIbatis">
+			SELECT 				
+				idprovincia as idprovincia,
+				descripcion_provincia as descripcion_provincia
+			FROM
+				provincia
+			WHERE 
+				iddepartamento=#{iddepartamento}
+				
+	</select>
+	
+		<!-- combo de distrito -->
+	<select id="SQL_traeDistritos" parameterType="java.lang.Integer"	 
+						    resultType="distritoBeanIbatis">
+			SELECT 				
+				iddistrito as iddistrito,
+				descripcion_distrito as descripcion_distrito
+			FROM
+				distrito
+			WHERE 
+				idprovincia=#{idprovincia}
+				
+	</select>
+	
+	<!-- Obtener data Trabajador Logueado -->
+	<select id="SQL_login" parameterType="trabajadorBeanIbatis"
+					resultType="trabajadorBeanIbatis" resultMap="TrabajadorLogueaMap">
+
+		call usp_Obtener_DatosLogueado(#{idusuario.login},#{idusuario.password})			
+	
+	</select>
+	
+		<!-- Mapea los datos de la tabla Trabajador Loguea -->
+	<resultMap id="TrabajadorLogueaMap" type="trabajadorBeanIbatis">
+	
+		<id property="idtrabajador" column="idtrabajador"/>
+		<result property="nombres" column="usuario"/>
+		<result property="idusuario.idusuario" column="idusuario"/>
+		
+	</resultMap>
+	
+	<!-- Obtener Enlace que maneja trabajador de acuerdo al rol -->
+	<select id="SQL_Enlace" parameterType="trabajadorBeanIbatis"
+					resultType="enlaceBeanIbatis">
+					
+		call usp_Obtener_Enlace(#{idusuario.login},#{idusuario.password})
+	
+	</select>
+	
+		<!-- Obtener Sub_Enlace que maneja trabajador de acuerdo al rol -->
+	<select id="SQL_Sub_Enlace" parameterType="enlaceBeanIbatis"
+					resultType="sub_enlaceBeanIbatis">		
+					
+		call usp_Obtener_SubEnlace(#{idenlace},#{idusuario_axu})
+	
+	</select>
+	
+	<!-- Traer parentesco -->
+	<select id="SQL_traerParentesco" resultType="parentescoBeanIbatis">
+		SELECT idparentesco as idparentesco,
+				descripcion as descripcion
+			FROM parentesco
+	</select>
+	
+	
+	<!-- Function Registra socio -->
+	<insert id="SQL_insertaSocio" parameterType="socioBeanIbatis"  statementType="CALLABLE">
+		call usp_Ins_Socio(#{nombres},#{apellido_paterno},#{apellido_materno},#{documento},#{correo},
+						#{fotoBytes},#{huellaBytes},#{huellaFileName},#{huellaContentType},
+						#{firmaBytes},#{requisito_asociarseBytes},#{requisito_asociarseFileName},
+						#{requisito_asociarseContentType},#{idtipoDocumento.idtipodocumento},#{idPais.idPais},
+						#{idubigeo.iddepartamento.iddepartamento},#{idubigeo.iddepartamento.descripcion_departamento},
+						#{idubigeo.idprovincia.idprovincia},#{idubigeo.idprovincia.descripcion_provincia},
+						#{idubigeo.iddistrito.iddistrito},#{idubigeo.iddistrito.descripcion_distrito},
+						#{idtrabajador.idtrabajador},#{idusuario.login},#{idusuario.password},
+						#{idsocio, mode=OUT,javaType=java.lang.String, jdbcType=VARCHAR})
+	
+	</insert>
+	
+	<!-- Function Registra Telefonos de socio -->
+	<insert id="SQL_insertaTelefonos" parameterType="telefonoBeanIbatis" statementType="CALLABLE">
+						
+			call usp_Ins_Telefonos (#{telefono},#{idSocioaux})
+		
+	</insert>
+	
+	<!-- Function Registra Direcciones de socio -->
+	<insert id="SQL_insertaDirecciones" parameterType="direccionBeanIbatis" statementType="CALLABLE">
+		
+			call usp_Ins_Direcciones (#{direccion},#{idSocioaux})
+		
+	</insert>
+	
+	<!-- Function Registra PersonaAsociada de socio -->
+	<insert id="SQL_insertaPersonaAsociada" parameterType="personaAsociadaBeanIbatis" statementType="CALLABLE">
+									
+		call usp_Ins_Asociado(#{nombres},#{apellido_paterno},#{apellido_materno},#{documento},
+			#{tipo_documento.idtipodocumento},#{parentesco.idparentesco},#{idsocio_aux})
+	</insert>
+	
+	<!--Query que actualiza Code Barra  para insertarlo en el socio-->
+	<update id="SQL_updateCodeBarra_CodeQR" parameterType="socioBeanIbatis" statementType="CALLABLE">
+		
+		call usp_UpdateCodeBarra_CodeQR(#{idsocio},#{barcode},#{qrcode}) 
+		
+	</update>
+	
+	<!-- Mapea los datos de la tabla Socio con el SocioBean -->
+	<resultMap id="SocioMap" type="socioBeanIbatis">
+	
+		<id property="idsocio" column="idsocio"/>
+		<result property="nombres" column="socio"/>
+		<result property="documento" column="documento"/>
+		<result property="idusuario.login" column="login"/>
+		<result property="idusuario.password" column="password"/>
+		
+	</resultMap>
+	
+	
+	<!-- Lista Socio -->
+	<select id="SQL_ListaSocio"	resultType="socioBeanIbatis" statementType="CALLABLE" resultMap="SocioMap">
+		
+		call usp_Cons_DatosSocio(#{idsocio},#{nombres},#{documento},#{paginador.limit},#{paginador.offset}) 
+		
+	</select>
+	
+		<!-- Obtiene TotalRegistroSocio para definir Pagination-->
+	<select id="SQL_TotalRegistroSocio"	resultType="java.lang.Integer" statementType="CALLABLE">
+		
+		call usp_TotaRegist_Socio(#{idsocio},#{nombres},#{documento},#{paginador.TotalRegistro, 
+		mode=OUT,javaType=java.lang.Integer, jdbcType=INTEGER}) 
+		
+	</select>
+	
+	<!-- query que obtiener la fotobytes del socio por su codigo -->
+	<select id="ObtenerFotoPorPk" resultType="socioBeanIbatis"
+								  parameterType="string">
+								  
+		call usp_obt_FotoSocio(#{idsocio})
+		
+	</select>
+	
+	<select id="SQL_ObtenerSocio" resultType="socioBeanIbatis"
+								  parameterType="string" resultMap="ObtenerSocioMap">
+		
+		call usp_obt_DatosSocio(#{idsocio})
+		
+	</select>
+	
+	<!-- Mapea los datos de la tabla Socio con el SocioBean -->
+	<resultMap id="ObtenerSocioMap" type="socioBeanIbatis">
+	
+		<id property="idsocio" column="idsocio"/>
+		<result property="nombres" column="nombres"/>
+		<result property="apellido_paterno" column="apellido_paterno"/>
+		<result property="apellido_materno" column="apellido_materno"/>
+		<result property="correo" column="correo"/>
+		<result property="idPais.idPais" column="idPais"/>
+		<result property="idtipoDocumento.idtipodocumento" column="idtipoDocumento"/>
+		<result property="documento" column="documento"/>
+		<result property="idubigeo.iddepartamento.iddepartamento" column="iddepartamento"/>
+		<result property="idubigeo.idprovincia.idprovincia" column="idprovincia"/>
+		<result property="idubigeo.iddistrito.iddistrito" column="iddistrito"/>
+		<result property="huellaFileName" column="huellaFileName"/>
+		<result property="requisito_asociarseFileName" column="requisito_asociarseFileName"/>
+		<result property="motivo_actualizacion" column="motivo_actualizacion"/>
+		<collection property="telefonos" column="idsocio" select="idCargaTelefonos"></collection>
+		<collection property="direcciones" column="idsocio" select="idCargaDirecciones"></collection>
+		<collection property="lstpersonaAsociadas" column="idsocio" select="idCargaPersonaAsociadas"></collection>
+	</resultMap>
+	
+	<!--query que trae los telefonos  -->
+	<select id="idCargaTelefonos" resultMap="telefonosMap">
+		call usp_obt_TelefonosSocio(#{idsocio})
+	</select>
+	
+	<!--Mapea tabla telefonoSocio  -->
+	<resultMap id="telefonosMap" type="telefonoBeanIbatis" >
+		<id property="idtelefono_socio" column="idtelefono_socio"/>
+		<result property="telefono" column="telefono"/>
+	</resultMap>
+	
+	<!--query que trae las direcciones  -->
+	<select id="idCargaDirecciones" resultMap="direccionesdMap">
+		call usp_obt_DireccionesSocio(#{idsocio})
+	</select>
+	
+	<!--Mapea tabla direccionSocio  -->
+	<resultMap id="direccionesdMap" type="direccionBeanIbatis" >
+		<id property="iddireccion_socio" column="iddireccion_socio"/>
+		<result property="direccion" column="direccion"/>
+	</resultMap>
+	
+	<!--query que trae las PersonaAsociadas  -->
+	<select id="idCargaPersonaAsociadas" resultMap="personaAsociadasMap">
+		call usp_obt_PersonaAsociadas(#{idsocio})
+	</select>
+	
+	<!--Mapea tabla personaAsociada  -->
+	<resultMap id="personaAsociadasMap" type="personaAsociadaBeanIbatis" >
+		<id property="idpersonaAsociada" column="idpersonaAsociada"/>
+		<result property="nombres" column="nombres"/>
+		<result property="apellido_paterno" column="apellido_paterno"/>
+		<result property="apellido_materno" column="apellido_materno"/>
+		<result property="documento" column="documento"/>
+		<result property="tipo_documento.idtipodocumento" column="idtipoDocumento"/>
+		<result property="tipo_documento.descripcion" column="descripcion"/>
+		<result property="parentesco.idparentesco" column="idparentesco"/>
+		<result property="parentesco.descripcion" column="parentesco"/>
+	</resultMap>
+	
+	<!-- query que obtiener la huellabytes del socio por su codigo -->
+	<select id="ObtenerHuellaPorPK" resultType="socioBeanIbatis"
+								  parameterType="string">
+								  
+		call usp_obt_HuellaSocio(#{idsocio})
+		
+	</select>
+	
+	<!-- query que obtiener la firmabytes del socio por su codigo -->
+	<select id="ObtenerFirmaPorPK" resultType="socioBeanIbatis"
+								  parameterType="string">
+								  
+		call usp_obt_FirmaSocio(#{idsocio})
+		
+	</select>
+	
+	<!-- query que obtiener la reqAsociarsebytes del socio por su codigo -->
+	<select id="ObtenerReqAsociarsePorPK" resultType="socioBeanIbatis"
+								  parameterType="string">
+								  
+		call usp_obt_ReqAsociarse(#{idsocio})
+		
+	</select>
+	
+	<!-- query para actualizar telefonosSocio -->
+	<update id="SQL_actualizaTelefono" parameterType="telefonoBeanIbatis" statementType="CALLABLE"> 
+		call usp_Update_Telefonos(#{idtelefono_socio},#{telefono},#{idSocioaux})		
+	</update>
+	
+	<!-- query para actualizar direccionSocio -->
+	<update id="SQL_actualizaDireccion" parameterType="direccionBeanIbatis" statementType="CALLABLE"> 
+		call usp_Update_Direcciones(#{iddireccion_socio},#{direccion},#{idSocioaux})
+	</update>
+	
+	<!-- query para actualizar personaAsociada -->
+	<update id="SQL_actualizaPersonaAsociada" parameterType="personaAsociadaBeanIbatis" statementType="CALLABLE"> 
+			call usp_Update_PersonasAsociadas(#{idpersonaAsociada},#{nombres},
+				#{apellido_paterno},#{apellido_materno},#{documento},#{tipo_documento.idtipodocumento},
+				#{parentesco.idparentesco},#{idsocio_aux})
+		
+	</update>
+	
+		<!-- query inserta MotivoUpdateSocio -->
+	<update id="SQL_insertaMotivoUpdateSocio" parameterType="socioBeanIbatis" statementType="CALLABLE"> 
+			call usp_UpdateMotivoSocio(#{motivo_actualizacion},#{idsocio})
+	</update>
+	
+	<!-- query eliminar TelefonoSocio -->
+	<delete id="SQL_DeleteTelefono" parameterType="telefonoBeanIbatis" statementType="CALLABLE"> 
+			call usp_Delete_Telefono(#{idtelefono_socio},#{idSocioaux})
+	</delete>
+	
+	<!-- query eliminar DireccionSocio -->
+	<delete id="SQL_DeleteDireccion" parameterType="direccionBeanIbatis" statementType="CALLABLE"> 
+			call usp_Delete_Direccion(#{iddireccion_socio},#{idSocioaux})
+	</delete>
+	
+	<!-- query eliminar PeronsaAsociada -->
+	<delete id="SQL_DeletePersonaAsociada" parameterType="personaAsociadaBeanIbatis" statementType="CALLABLE"> 
+			call usp_Delete_PersonaAsociada(#{idpersonaAsociada},#{idsocio_aux})
+	</delete>
+	
+			<!-- Function Registra Trabajador -->
+	<insert id="SQL_insertaTrabajador" parameterType="trabajadorBeanIbatis"  statementType="CALLABLE">
+		call usp_Ins_Trabajador(#{nombres},#{apellidos},#{DNI},#{idusuario.login},#{idusuario.password},
+						#{rol.idRol},#{idtrabajador, mode=OUT,javaType=java.lang.String, jdbcType=VARCHAR})
+	
+	</insert>
+	
+		<!-- Function Actualiza Trabajador -->
+	
+	<update id="SQL_actualizaTrabajador" parameterType="trabajadorBeanIbatis">
+			call usp_Update_Trabajador(#{idtrabajador},#{nombres},#{apellidos},#{DNI},#{idusuario.idusuario}
+			,#{idusuario.login},#{idusuario.password},#{rol.idRol})
+	</update>
+	
+    <select id="SQL_traerusuario" 	 
+						    resultType="usuarioBeanIbatis">
+			SELECT 
+				idusuario as idusuario,
+				login as login
+				password as password
+			FROM
+				usuario	
+				
+	</select>
+	
+    <select id="SQL_traerRol" 	 
+					    resultType="rolBeanIbatis">
+		SELECT 
+			idrol as idRol,
+			descripcion as descripcion
+		FROM
+			rol	
+			
+	</select>
+	
+		<!-- Obtiene TotalRegistroTrabajador para definir Pagination-->
+	<select id="SQL_TotalRegistroTrabajador"	resultType="java.lang.Integer" statementType="CALLABLE">
+		
+		call usp_TotaRegist_Trabajador(#{idtrabajador},#{nombres},#{DNI},#{paginador.TotalRegistro, 
+		mode=OUT,javaType=java.lang.Integer, jdbcType=INTEGER}) 
+		
+	</select>
+	
+		<!-- Lista Trabajador -->
+	<select id="SQL_ListaTrabajador" resultType="trabajadorBeanIbatis" statementType="CALLABLE" resultMap="TrabajadorMap">
+		
+		call usp_Cons_DatosTrabajador(#{idtrabajador},#{nombres},#{DNI},#{paginador.limit},#{paginador.offset}) 
+		
+	</select>
+	
+			<!-- Mapea los datos de la tabla Socio con el SocioBean -->
+	<resultMap id="TrabajadorMap" type="trabajadorBeanIbatis">
+	
+		<id property="idtrabajador" column="idtrabajador"/>
+		<result property="nombres" column="trabajador"/>
+		<result property="DNI" column="DNI"/>
+		<result property="idusuario.login" column="login"/>
+		<result property="idusuario.password" column="password"/>
+		<result property="rol.descripcion" column="descripcion"/>
+		
+	</resultMap>
+	
+    <select id="SQL_ObtenerTrabajador" resultType="trabajadorBeanIbatis"
+								  parameterType="string" resultMap="ObtenerTrabajadorMap">
+		
+		call usp_obt_DatosTrabajador(#{idtrabajador})
+		
+	</select>
+	
+	<resultMap id="ObtenerTrabajadorMap" type="trabajadorBeanIbatis">
+	
+		<id property="idtrabajador" column="idtrabajador"/>
+		<result property="nombres" column="trabajador"/>
+		<result property="DNI" column="DNI"/>
+		<result property="idusuario.idusuario" column="idusuario"/>
+		<result property="idusuario.login" column="login"/>
+		<result property="idusuario.password" column="password"/>
+		<result property="rol.idRol" column="idrol"/>
+		
+	</resultMap>
+		
+	<!--Query que da de baja socio-->
+	<update id="SQL_DarBajaSocio" parameterType="string" statementType="CALLABLE">
+		
+		call usp_DaBajaSocio(#{idsocio})
+		
+	</update>		
+	
+	<!-- perez -->
+	<!-- Result Map para traer la obligacion -->
+	<resultMap id="obligacionMap" type="ObligacionBeanIbatis" >
+		<id property="idobligaciones" column="idobligaciones"/>
+		<result property="descripcion" column="descripcion"/>
+		<result property="fecha_registro" column="fecha_registro"/>
+		<result property="montoTotal" column="montoTotal"/>
+		<result property="tipo.idtipo_obligacion" column="idtipo_obligacion"/>
+		<result property="tipo.descripcion" column="descripcion"/>
+		<result property="cuotas" column="cuotas"/>
+		<result property="fecha_vencimiento" column="fecha_vencimiento"/>
+		<result property="tasa_interes" column="tasa_interes"/>
+		<result property="socio.nombres" column="nombres"/>
+		<result property="socio.apellido_paterno" column="apellido_paterno"/>
+		<result property="socio.apellido_materno" column="apellido_materno"/>
+		<result property="estado.idestado" column="idestado"/>
+		<result property="estado.descripcion" column="descripcion"/>
+	</resultMap>
+	
+	
+	
+	<!-- Obtengo la obligacion del socio por su DNI -->
+	<select id="SQL_traeObligacion" parameterType="java.lang.String"
+								resultMap="obligacionMap">
+		select
+			o.idobligaciones,
+			o.descripcion,
+			o.fecha_registro,
+			o.montoTotal,
+			o.idtipo_obligacion,
+			t.descripcion,
+			o.cuotas,
+			o.fecha_vencimiento,
+			o.tasa_interes,
+			s.nombres,
+			s.apellido_paterno,
+			s.apellido_materno,
+			o.idestado,
+			e.descripcion
+		from 
+			obligaciones o inner join socio s 
+			on o.idsocio=s.idsocio inner join tipo_obligacion t
+			on t.idtipo_obligacion=o.idtipo_obligacion inner join estado e
+			on e.idestado=o.idestado
+		where 
+			s.documento=#{dni};
+	
+	</select>
+	
+	<select id="SQL_traeObligacion_sinVencimiento" parameterType="java.lang.String"
+								resultMap="obligacionMap">
+		select
+			o.idobligaciones,
+			o.descripcion,
+			o.fecha_registro,
+			o.montoTotal,
+			o.idtipo_obligacion,
+			t.descripcion,
+			o.cuotas,
+			o.fecha_vencimiento,
+			o.tasa_interes,
+			s.nombres,
+			s.apellido_paterno,
+			s.apellido_materno,
+			o.idestado,
+			e.descripcion
+		from 
+			obligaciones o inner join socio s 
+			on o.idsocio=s.idsocio inner join tipo_obligacion t
+			on t.idtipo_obligacion=o.idtipo_obligacion inner join estado e
+			on e.idestado=o.idestado
+		where 
+			s.documento=#{dni} AND o.idtipo_obligacion=3;
+	
+	</select>
+	
+	<!-- Result Map para traer la obligacion -->
+	<resultMap id="cuotaMap" type="CuotaBeanIbatis" >
+		<id property="idcuota" column="idcuota"/>
+		<result property="fechaPago" column="fechaPago"/>
+		<result property="monto" column="monto"/>
+		<result property="idObligacionAux" column="idobligaciones"/>
+		<result property="estado.idestado" column="idestado"/>
+		<result property="estado.descripcion" column="descripcion"/>
+	</resultMap>
+	
+	<select id="SQL_cuotasDeObligacion" parameterType="java.lang.String"
+										resultMap="cuotaMap">
+			select
+				idcuota, 
+				DATE_FORMAT(`fechaPago`,'%d-%m-%Y') as fechaPago,
+				monto,
+				idobligaciones,
+				c.idestado,
+                e.descripcion
+			from cuota c inner join estado e on c.idestado=e.idestado
+			where 
+				idobligaciones=#{idObligacion} and c.idestado=1;
+	
+	</select>
+	
+	<select id="SQL_cuotasDeObligacion2" parameterType="java.lang.String"
+										resultMap="cuotaMap">
+			select
+				idcuota, 
+				DATE_FORMAT(`fechaPago`,'%d-%m-%Y') as fechaPago,
+				monto,
+				idobligaciones,
+				c.idestado,
+                e.descripcion
+			from cuota c inner join estado e on c.idestado=e.idestado
+			where 
+				idobligaciones=#{idObligacion} ;
+	
+	</select>
+	
+	<select id="SQL_cuotasDeObligacion_sinFechaParse" parameterType="java.lang.String"
+										resultMap="cuotaMap">
+			select
+				idcuota, 
+				fechaPago,
+				monto,
+				idobligaciones,
+				c.idestado,
+                e.descripcion
+			from cuota c inner join estado e on c.idestado=e.idestado
+			where 
+				idobligaciones=#{idObligacion} and c.idestado=1;
+	
+	</select>
+	
+	<insert id="SQL_insertaFactura"	parameterType="FacturaBeanIbatis">
+			INSERT INTO factura VALUES(null,#{obligacion.idobligaciones},#{dniPagador},#{nombresPagador},curdate(),#{Total})
+	</insert>	
+	
+	<insert id="SQL_insertaDetalle"	parameterType="DetalleBeanIbatis">
+			INSERT INTO detalle_factura VALUES(#{idfactura},#{idcuota},#{monto},#{fecha_vencimiento},#{mora})     
+	</insert>
+	
+	<select id="SQL_obtieneIdFactura" resultType="int">
+			select max(idfactura) from factura;
+	</select>
+	
+	<update id="SQL_cambiaEstadoCuota" parameterType="java.lang.Integer">
+		update cuota set idestado=3 where idcuota=#{idcuota};
+	</update>
+	<update id="SQL_cambiaEstadoObligacion" parameterType="java.lang.String">
+		update obligaciones set idestado=4 where idobligaciones=#{idobligacion};
+	</update>
+	
+	<select id="SQL_ObtenerPagos" resultType="FacturaBeanIbatis">
+	
+		select * from factura where idobligaciones=#{idObligacion};
+	</select>
+	
+	
+	   <select id="SQL_listaTipoObligacion" resultType="tipoObligacionBeanIbatis">
+     	SELECT 
+     		   idtipo_obligacion as idtipo_obligacion,
+     		   descripcion as descripcion
+     	FROM 
+     		   tipo_obligacion	   	
+     </select>
+	
+		<select id="SQL_reportesConsultaSocio" parameterType="int"	resultType="obligacionBeanIbatis1">
+		SELECT 
+				idsocio as idsocio,
+				nombres as nombres,
+				apellido_paterno as apellido_paterno,
+				apellido_materno as apellido_materno,
+				documento as documento,
+				correo as correo									
+		FROM socio
+		WHERE idPais = #{idPais} 	
+	</select>	
+	
+<select id="SQL_reportesConsultaObligacion" parameterType="int" resultType="obligacionBeanIbatis1">
+			SELECT
+				o.idobligaciones as idobligaciones,
+				o.fecha_registro as fecha_registro,
+				o.montoTotal  as montoTotal,
+				t.descripcion as Tipodescripcion,
+				o.cuotas as cuotas,
+				s.nombres as nombres,
+				s.apellido_paterno as apellido_paterno
+			FROM 
+				obligaciones o 
+				INNER JOIN socio s on o.idsocio = s.idsocio 
+				INNER JOIN tipo_obligacion t on o.idtipo_obligacion = t.idtipo_obligacion
+			WHERE 
+				t.idtipo_obligacion = #{tipo} 
+	</select>
+	
+	
+
+</mapper>
+
+	
+
+

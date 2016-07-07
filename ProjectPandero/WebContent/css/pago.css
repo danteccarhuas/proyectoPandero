@@ -1,0 +1,52 @@
+@CHARSET "ISO-8859-1";
+.txtPago{
+	position: relative; left: 26px;
+}
+.lblFechaPago{
+	position: relative; left: 110px;
+}
+.txtFechaPago{
+	position: relative; left: 142px;
+}
+.txtDni{
+	position: relative; left: 6px;
+}
+.btnConsultar{
+	position: relative; left: 10px;
+}
+.lblSocio{
+	position: relative; left: 10px;
+}
+.txtSocio{
+	position: relative; left: 104px;
+}
+.lblDescripcion{
+	position: relative; left: 86px;
+}
+.txtDescripcion{
+	position: relative; left: 137px;
+}
+.txtMonto{
+	position: relative; left: 49px;
+}
+.lblTipo{
+	position: relative; left: 135px;
+}
+.txtTipo{
+	position: relative; left: 237px;
+}
+.txtCuotas{
+	position: relative; left: 44px;
+}
+.lblVencimiento{
+	position: relative; left: 131px;
+}
+.txtVencimiento{
+	position: relative; left: 134px;
+}
+.lblTotal{
+	position: relative; left: 364px;
+}
+.txtTotal{
+	position: relative; left: 406px;
+}

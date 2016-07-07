@@ -1,0 +1,196 @@
+
+/**********************************
+ div principales
+***********************************/   
+#idPrincipal{	position: absolute;	top: 0px;	left: 0px;	width: 1280px;	height: 690px;padding: 0px;	font-size: 12px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+#idCabecera{	position: absolute;	top: 0px;	left: 0px;	width: 1280px;	height: 100px;  padding: 0px;	font-size: 12px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+#idCuerpo{	position: absolute;	top: 101px;	left: 0px;	width: 1270px;	height: 590px; padding: 0px;	font-size: 12px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+#idMenu{	position: absolute;	top: 0px;	left: 0px;	width: 200px;	height: 590px;  padding: 0px;margin:0;	font-size: 12px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;background-color:  #243577;	}
+#idCentralConMenu{	position: absolute;	top: 0px;	left: 200px;	width: 1080px;	height: 590px; padding: 0px;	font-size: 12px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;background-color: #243577;	}
+#idCentralSinMenu{	position: absolute;	top: 0px;	left: 0px;	width: 1280px;	height: 590px;  padding: 0px;	font-size: 12px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;background-color:#243577;	}
+
+/**********************************
+ Reporte 1,3,4,5
+***********************************/
+#idDivReporte{	position: absolute;	top: 0px;	left: 0px;	width: 1075px;	height: 200px; background-color:  #BCF5A9; padding: 0px;color: green;	font-size: 11px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+
+#idLabelTituloReporte {	position: absolute;	top: 5px;	left: 50px;	width: 1010px;	height: 20px; 	display:block;	font-family:Tahoma, Geneva, sans-serif;	font-size:14px;font-weight:bold;color:#679b14;background-color:#243577;text-shadow:#FFF 1px 1px 1px; text-align: center;}
+
+#idLabelNombre {	position: absolute;	top: 30px;	left: 400px;	width: 100px;	height: 15px; 	}
+#idNombre {	 		position: absolute;	top: 30px;	left: 520px; width: 200px;	height: 20px;	}
+
+
+#idSubmitReporte{	  position: absolute;	top: 40px;	left: 470px;	width: 200px;	height: 25px;	}  
+#idFrameReporte{	position: absolute;	top: 100px;	left: 	50px;	width: 1010px;	height: 380px; background-color:   #BCF5A9; padding: 0px;color: green;	font-size: 10px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+
+
+/**********************************
+ Reporte 2
+***********************************/
+
+#idReporte2LabelNombre {	position: absolute;	top: 30px;	left: 400px;	width: 100px;	height: 15px; 	}
+#idReporte2Nombre {	 		position: absolute;	top: 30px;	left: 520px; width: 200px;	height: 20px;	}
+
+#idReporte2LabelDistrito { 	position: absolute;	top: 65px;	left: 400px;	width: 100px;	height: 15px;	}
+#idReporte2Distrito {	  	position: absolute;	top: 65px;	left: 520px;	width: 200px;	height: 20px;	}
+
+#idSubmitReporte2{	  position: absolute;	top: 100px;	left: 470px;	width: 200px;	height: 25px;	}  
+
+#idFrameReporte2{	position: absolute;	top: 140px;	left: 	50px;	width: 1010px;	height: 380px; background-color:   #243577; padding: 0px;color: green;	font-size: 10px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+
+
+/**********************************
+ Reporte 1,3,4,5
+***********************************/
+#idDivReporte{	position: absolute;	top: 0px;	left: 0px;	width: 1075px;	height: 200px; background-color:  #243577; padding: 0px;color: green;	font-size: 11px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+
+#idLabelTituloReporte {	position: absolute;	top: 5px;	left: 50px;	width: 1010px;	height: 20px; 	display:block;	font-family:Tahoma, Geneva, sans-serif;	font-size:14px;font-weight:bold;color:#679b14;background-color:#cfe8a7;text-shadow:#FFF 1px 1px 1px; text-align: center;}
+
+#idSubmitReporte{	  position: absolute;	top: 40px;	left: 470px;	width: 200px;	height: 25px;	}  
+
+
+#idFrameReporte{	position: absolute;	top: 100px;	left: 	50px;	width: 1010px;	height: 380px; background-color:   #243577; padding: 0px;color: green;	font-size: 10px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+
+/**********************************
+ Registra personal    
+***********************************/
+#idDivRegistraPersonal{	position: absolute;	top: 0px;	left: 0px;	width: 1075px;	height: 590px; background-color:  #243577; padding: 0px;color: green;	font-size: 11px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+
+#idLabelTituloPersonal {	position: absolute;	top: 5px;	left: 50px;	width: 1010px;	height: 20px; 	display:block;	font-family:Tahoma, Geneva, sans-serif;	font-size:14px;font-weight:bold;color:#679b14;background-color:#243577;text-shadow:#FFF 1px 1px 1px; text-align: center;}
+
+#idLabelPerNombre {	position: absolute;	top: 30px;	left: 400px;	width: 100px;	height: 15px; 	}
+#idPerNombre {	 		position: absolute;	top: 30px;	left: 520px; width: 200px;	height: 20px;	}
+  
+#idLabelPerImagen { 	position: absolute;	top: 65px;	left: 400px;	width: 100px;	height: 15px;	}
+#idPerImagen {	  	position: absolute;	top: 65px;	left: 520px;	width: 400px;	height: 20px;	}
+
+#idLabelPerCV { 	position: absolute;	top: 100px;	left: 400px;	width: 130px;	height: 15px;	}
+#idPerCV {	  	position: absolute;	top: 100px;	left: 520px;	width: 400px;	height: 20px;	}
+
+
+#idRegistrarPersonal {	  	position: absolute;	top: 135px;	left: 400px;	width: 100px;	height: 25px;	}
+#idLimpiarPersonal {	  	position: absolute;	top: 135px;	left: 520px;	width: 100px;	height: 25px;	}
+  
+
+/**********************************
+ Registra vendedor    
+***********************************/
+#idDivRegistraVendedor{	position: absolute;	top: 0px;	left: 0px;	width: 1075px;	height: 590px; background-color:  #243577; padding: 0px;color: green;	font-size: 11px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+
+#idLabelTituloRegistro {	position: absolute;	top: 5px;	left: 50px;	width: 1010px;	height: 20px; 	display:block;	font-family:Tahoma, Geneva, sans-serif;	font-size:14px;font-weight:bold;color:#679b14;background-color:#cfe8a7;text-shadow:#FFF 1px 1px 1px; text-align: center;}
+
+#idLabelNombre {	position: absolute;	top: 30px;	left: 400px;	width: 100px;	height: 15px; 	}
+#idNombre {	 		position: absolute;	top: 30px;	left: 520px; width: 200px;	height: 20px;	}
+  
+#idLabelApellido { 	position: absolute;	top: 65px;	left: 400px;	width: 100px;	height: 15px;	}
+#idApellido {	  	position: absolute;	top: 65px;	left: 520px;	width: 200px;	height: 20px;	}
+
+#idLabelEdad { 	position: absolute;	top: 100px;	left: 400px;	width: 130px;	height: 15px;	}
+#idEdad {	  	position: absolute;	top: 100px;	left: 520px;	width: 200px;	height: 20px;	}
+
+#idLabelFecha { position: absolute;	top: 135px;	left: 400px;	width: 120px;	height: 15px;	}
+#idFecha {	  	position: absolute;	top: 135px;	left: 520px;	width: 200px;	height: 20px;	}
+
+
+#idLabelEstadoCivil { position: absolute;	top: 170px;	left: 400px;	width: 100px;	height: 15px;	}
+#idEstadoCivil {	  position: absolute;	top: 170px;	left: 520px;	width: 200px;	height: 20px;	}  
+
+#idLabelDistrito { 	position: absolute;	top: 205px;	left: 400px;	width: 100px;	height: 15px;	}
+#idDistrito {	  	position: absolute;	top: 205px;	left: 520px;	width: 200px;	height: 20px;	}
+
+#idRegistrarVendedor {	  	position: absolute;	top: 240px;	left: 400px;	width: 100px;	height: 25px;	}
+#idLimpiarVendedor {	  	position: absolute;	top: 240px;	left: 520px;	width: 100px;	height: 25px;	}
+  
+/**********************************
+ Consulta vendedor    
+***********************************/
+#idDivConsultaVendedor{	position: absolute;	top: 0px;	left: 0px;	width: 1075px;	height: 200px; background-color:  #243577; padding: 0px;color: green;	font-size: 11px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+
+#idLabelTituloConsulta {	position: absolute;	top: 5px;	left: 50px;	width: 1010px;	height: 20px; 	display:block;	font-family:Tahoma, Geneva, sans-serif;	font-size:14px;font-weight:bold;color:#679b14;background-color:#cfe8a7;text-shadow:#FFF 1px 1px 1px; text-align: center;}
+
+#idConsultaVendedor { position: absolute;	top: 100px;	left: 400px;	width: 100px;	height: 20px;	}
+#idSubmitConsultaVendedor {	  position: absolute;	top: 100px;	left: 520px;	width: 200px;	height: 25px;	}  
+
+
+#idGridVendedor{	position: absolute;	top: 220px;	left: 	50px;	width: 1010px;	height: 200px; background-color:   #243577; padding: 0px;color: green;	font-size: 10px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+
+
+/**********************************
+ Consulta sede    
+***********************************/
+#idDivConsultaSede{	position: absolute;	top: 0px;	left: 0px;	width: 1075px;	height: 200px; background-color:  #243577; padding: 0px;color: green;	font-size: 11px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+
+#idLabelTituloConsultaSede {	position: absolute;	top: 5px;	left: 50px;	width: 1010px;	height: 20px; 	display:block;	font-family:Tahoma, Geneva, sans-serif;	font-size:14px;font-weight:bold;color:#679b14;background-color:#cfe8a7;text-shadow:#FFF 1px 1px 1px; text-align: center;}
+
+#idConsultaSede { position: absolute;	top: 100px;	left: 400px;	width: 100px;	height: 20px;	}
+#idSubmitConsultaSede {	  position: absolute;	top: 100px;	left: 520px;	width: 200px;	height: 25px;	}  
+
+
+#idGridSede{	position: absolute;	top: 220px;	left: 	50px;	width: 1010px;	height: 200px; background-color:   #243577; padding: 0px;color: green;	font-size: 10px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+
+
+/**********************************
+ Consulta producto    
+***********************************/
+#idDivConsultaProducto{	position: absolute;	top: 0px;	left: 0px;	width: 1075px;	height: 200px; background-color:  #243577; padding: 0px;color: green;	font-size: 11px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+
+#idLabelTituloConsultaProducto {	position: absolute;	top: 5px;	left: 50px;	width: 1010px;	height: 20px; 	display:block;	font-family:Tahoma, Geneva, sans-serif;	font-size:14px;font-weight:bold;color:#679b14;background-color:#cfe8a7;text-shadow:#FFF 1px 1px 1px; text-align: center;}
+
+#idConsultaProducto { position: absolute;	top: 100px;	left: 400px;	width: 100px;	height: 20px;	}
+#idSubmitConsultaProducto {	  position: absolute;	top: 100px;	left: 520px;	width: 200px;	height: 25px;	}  
+
+
+#idGridProducto{	position: absolute;	top: 220px;	left: 	50px;	width: 1010px;	height: 200px; background-color:   #243577; padding: 0px;color: green;	font-size: 10px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+
+
+/**********************************
+ Ubigeo    
+***********************************/
+#idLabelDepartamentoOrigen{ position: absolute;top:10px; left:10px; width: 90px; height: 15px;}
+#idComboDepartamentoOrigen{ position: absolute;top:10px; left:110px; width: 180px; height: 20px;}
+#idLabelProvinciaOrigen{ position: absolute;top:35px; left:10px; width: 100px; height: 15px;}
+#idComboProvinciaOrigen{ position: absolute;top:35px; left:110px; width: 180px; height: 20px;}
+#idLabelDistritoOrigen{ position: absolute;top:60px; left:10px; width: 100px; height: 15px;}
+#idComboDistritoOrigen{ position: absolute;top:60px; left:110px; width: 180px; height: 20px;}
+#idSubmitUbigeoOrigen{ position: absolute;top:85px; left:80px; width: 130px; height: 25px;}
+
+#idLabelVendedor{ position: absolute;top:100px; left:10px; width: 90px; height: 15px;}
+#idComboVendedor{ position: absolute;top:100px; left:110px; width: 180px; height: 20px;}
+
+
+
+/**********************************
+ Mantenimiento vendedor    
+***********************************/
+#idDivMantVendedor{	position: absolute;	top: 0px;	left: 0px;	width: 1075px;	height: 590px; background-color:  #243577; padding: 0px;color: green;	font-size: 11px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+
+#idMantLabelTituloRegistro {	position: absolute;	top: 5px;	left: 50px;	width: 1010px;	height: 20px; 	display:block;	font-family:Tahoma, Geneva, sans-serif;	font-size:14px;font-weight:bold;color:#679b14;background-color:#cfe8a7;text-shadow:#FFF 1px 1px 1px; text-align: center;}
+
+#idMantLabelNombre {	position: absolute;	top: 30px;	left: 400px;	width: 100px;	height: 15px; 	}
+#idMantNombre {	 		position: absolute;	top: 30px;	left: 520px; width: 200px;	height: 20px;	}
+  
+#idMantLabelApellido { 	position: absolute;	top: 65px;	left: 400px;	width: 100px;	height: 15px;	}
+#idMantApellido {	  	position: absolute;	top: 65px;	left: 520px;	width: 200px;	height: 20px;	}
+
+#idMantLabelEdad { 	position: absolute;	top: 100px;	left: 400px;	width: 130px;	height: 15px;	}
+#idMantEdad {	  	position: absolute;	top: 100px;	left: 520px;	width: 200px;	height: 20px;	}
+
+#idMantLabelFecha { position: absolute;	top: 135px;	left: 400px;	width: 120px;	height: 15px;	}
+#idMantFecha {	  	position: absolute;	top: 135px;	left: 520px;	width: 200px;	height: 20px;	}
+
+#idMantLabelEstadoCivil { position: absolute;	top: 170px;	left: 400px;	width: 100px;	height: 15px;	}
+#idMantEstadoCivil {	  position: absolute;	top: 170px;	left: 520px;	width: 200px;	height: 20px;	}  
+
+#idMantLabelDistrito { 	position: absolute;	top: 205px;	left: 400px;	width: 100px;	height: 15px;	}
+#idMantDistrito {	  	position: absolute;	top: 205px;	left: 520px;	width: 200px;	height: 20px;	}
+
+#idFormAgregar {	  position: absolute;	top: 240px;	left: 380px;	width: 80px;	height: 25px;	}  
+#idFormActualizar {	  position: absolute;	top: 240px;	left: 480px;	width: 80px;	height: 25px;	}  
+#idFormEliminar {	  position: absolute;	top: 240px;	left: 580px;	width: 80px;	height: 25px;	}  
+#idFormSalir {	  position: absolute;	top: 240px;	left: 680px;	width: 80px;	height: 25px;	}  
+
+
+#idDivManVenResultado{	position: absolute;	top: 280;	left: 200px;	width: 800px;	height: 250px; background-color:  #243577; padding: 0px;color: green;	font-size: 11px;	font-style: normal;	font-family: Verdana, Geneva, sans-serif;	}
+
+
+

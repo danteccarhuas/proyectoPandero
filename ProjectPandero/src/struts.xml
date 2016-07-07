@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+	<struts>
+
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.configuration.xml.reload" value="true" />
+	<constant name="struts.custom.i18n.resources" value="global" />
+	<constant name="struts.action.excludePattern" value=".*/static/.*" />
+	
+	
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <constant name="struts.devMode" value="false" />
+    <constant name="struts.convention.action.packages" value="com.jgeppert.struts2.bootstrap.showcase"/>
+    <constant name="struts.custom.i18n.resources" value="messages" />
+    
+    	
+	<package name="dawi" namespace="/" extends="struts-default,json-default,tiles-default">
+	
+	
+	<action name="a_login">	
+			<result type="tiles">t_login</result>
+	</action>
+	<action name="a_socio">	
+			<result type="tiles">t_socio</result>
+	</action>
+	<action name="a_trabajador">	
+			<result type="tiles">t_trabajador</result>
+	</action>
+	<action name="a_menu">	
+			<result type="tiles" name="success">t_menu_intranet</result>
+	</action>
+	
+	<action name="a_registrar_pago">
+		<result type="tiles">t_registrar_pago</result>
+	</action>
+	
+	<action name="a_reporteSocioPais">
+		<result type="tiles">t_reporte_SocioPais</result>
+	</action>
+	
+	<action name="a_reporteObligacionesPorTipo">
+		<result type="tiles">t_reporte_ObligacionesPorTipo</result>
+	</action>
+	</package>
+	
+	<package name="dawi1" namespace="/"
+		extends="struts-default,json-default">
+		
+		<result-types>
+			<result-type name="jasper"	class="org.apache.struts2.views.jasperreports.JasperReportsResult" />
+		</result-types>
+	</package>
+	
+</struts>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<!-- Los tipos de datos para que se entere el MyIBATIS de su xistencia -->
+
+	<typeAliases>
+				   	
+		<typeAlias alias="tipoDocumentoBeanIbatis"	
+				   	type="com.pandero.beans.TipoDocumentoBean" />
+		
+		<typeAlias alias="paisBeanIbatis"	
+				   	type="com.pandero.beans.PaisBean" />
+				   	
+		<typeAlias alias="socioBeanIbatis"	
+				   	type="com.pandero.beans.SocioBean" />
+				   	
+		<typeAlias alias="departamentoBeanIbatis"	
+				   	type="com.pandero.beans.DepartamentoBean" />
+				   	
+		<typeAlias alias="provinciaBeanIbatis"	
+				   	type="com.pandero.beans.ProvinciaBean" />
+				   	
+		<typeAlias alias="distritoBeanIbatis"	
+				   	type="com.pandero.beans.DistritoBean" />
+				   	
+		<typeAlias alias="trabajadorBeanIbatis"	
+				   	type="com.pandero.beans.TrabajadorBean" />
+				   	
+		<typeAlias alias="enlaceBeanIbatis"	
+				   	type="com.pandero.beans.EnlaceBean" />
+				   	
+		<typeAlias alias="sub_enlaceBeanIbatis"	
+				   	type="com.pandero.beans.Sub_EnlaceBean" />
+				   	
+		<typeAlias alias="parentescoBeanIbatis"	
+				   	type="com.pandero.beans.ParentescoBean" />
+		
+		<typeAlias alias="telefonoBeanIbatis"	
+				   	type="com.pandero.beans.TelefonoBean" />
+				   		
+		<typeAlias alias="direccionBeanIbatis"	
+				   	type="com.pandero.beans.DireccionBean" />
+				   	
+		<typeAlias alias="personaAsociadaBeanIbatis"	
+				   	type="com.pandero.beans.PersonaAsociadaBean" />
+				   	
+		<typeAlias alias="rolBeanIbatis"	
+				   	type="com.pandero.beans.RolBean" />		   	
+		
+		<typeAlias alias="usuarioBeanIbatis"	
+				   	type="com.pandero.beans.UsuarioBean" />	
+				   	
+		<!-- Perez -->
+		<typeAlias alias="DetalleBeanIbatis"	
+				   	type="com.pandero.beans.DetalleBean" />
+				   	
+		<typeAlias alias="FacturaBeanIbatis"	
+				   	type="com.pandero.beans.FacturaBean" />		
+				   	
+		<typeAlias alias="ObligacionBeanIbatis"	
+				   	type="com.pandero.beans.ObligacionBean" />	
+				   	
+	   	<typeAlias alias="CuotaBeanIbatis"	
+				   	type="com.pandero.beans.CuotaBean" />
+				   	
+				   	
+		<typeAlias alias="obligacionBeanIbatis1" 
+					 type="com.pandero.beans.ObligacionBean" />
+					 
+		<typeAlias alias="tipoObligacionBeanIbatis" 
+					 type="com.pandero.beans.TipoObligacionBean" />
+	</typeAliases> 
+	
+	
+	
+	<environments default="development">
+		<environment id="development">
+		
+			<transactionManager type="JDBC" />
+		
+			<dataSource type="UNPOOLED">
+						<property name="driver" value="com.mysql.jdbc.Driver" />
+						<property name="url" value="jdbc:mysql://localhost:3306/bd_proyecto" />
+						<property name="username" value="root" />
+						<property name="password" value="mysql" />
+			</dataSource>
+			 
+			
+		</environment>
+	</environments>
+	
+	<!--  Registro de los mappers  -->
+	<mappers>
+		<mapper resource="mapper.xml" />
+	</mappers>
+		
+</configuration>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<!-- Los tipos de datos para que se entere el MyIBATIS de su xistencia -->
+
+	<typeAliases>				   	
+		<typeAlias alias="paisBeanIbatis" type="com.pandero.beans.PaisBean" />
+		<typeAlias alias="reporteBeanIbatis" type="com.pandero.beans.ReporteBean" />				   	
+		<typeAlias alias="socioBeanIbatis"  type="com.pandero.beans.SocioBean" />
+		<typeAlias alias="obligacionBeanIbatis1" type="com.pandero.beans.ObligacionBean" />
+		<typeAlias alias="tipoObligacionBeanIbatis" type="com.pandero.beans.TipoObligacionBean" />
+		<typeAlias alias="estadoBeanIbatis" type="com.pandero.beans.EstadoBean" />
+	</typeAliases> 
+	
+		
+
+	<environments default="development">
+		<environment id="development">
+		
+			<transactionManager type="JDBC" />
+		
+			<dataSource type="UNPOOLED">
+						<property name="driver" value="com.mysql.jdbc.Driver" />
+						<property name="url" value="jdbc:mysql://localhost:3306/bd_proyecto" />
+						<property name="username" value="root" />
+						<property name="password" value="mysql" />
+			</dataSource>
+			 
+			
+		</environment>
+	</environments>
+	
+	<!--  Registro de los mappers  -->
+	<mappers>
+		<mapper resource="mapper1.xml" />
+	</mappers>
+		
+</configuration>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+	<definition name="t_login" template="/pages/login.jsp"></definition>
+	
+	<definition name="t_intranet" template="/pages/intranet.jsp"></definition>
+	
+	<definition name="t_menu_intranet" template="/templates/menu.jsp">
+		<put-attribute name="bodymenu" value="/pages/intranet.jsp"/>
+	</definition>
+		
+	<definition name="t_socio" template="/templates/menu.jsp">
+		<put-attribute name="bodymenu" value="/pages/socio.jsp"/>
+	</definition>
+		<definition name="t_trabajador" template="/templates/menu.jsp">
+		<put-attribute name="bodymenu" value="/pages/trabajador.jsp"/>
+	</definition>		
+	
+	<definition name="t_registrar_pago" template="/templates/menu.jsp">
+		<put-attribute name="bodymenu" value="/pages/pago.jsp"/>
+	</definition>
+	
+	<definition name="t_reporte_SocioPais" template="/templates/menu.jsp">
+		<put-attribute name="bodymenu" value="/pages/ReporteSocioPais.jsp"/>		
+	</definition>
+	
+	<definition name="t_reporte_ObligacionesPorTipo" template="/templates/menu.jsp">
+		<put-attribute name="bodymenu" value="/pages/ReporteObligacionesPorTipo.jsp"/>		
+	</definition>
+	
+</tiles-definitions>
