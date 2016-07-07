@@ -561,7 +561,7 @@ public class SocioAction extends ActionSupport {
 	}	
 	
 	@SuppressWarnings("unchecked")
-	@Action(value = "/listDirecciones", results = {@Result(name = "success", type="json")})
+	@Action(value = "/listDirecciones")
 	public String listDirecciones() {
 		try {
 		List<DireccionBean> datalist = (ArrayList<DireccionBean>)session.get("direccionesSocio");
@@ -766,7 +766,7 @@ public class SocioAction extends ActionSupport {
 	}
 	
 	@SuppressWarnings("unchecked")
-	@Action(value = "/listTelefonos", results = {@Result(name = "success", type="json")})
+	@Action(value = "/listTelefonos")
 	public String listTelefonos() {
 		try {
 		List<TelefonoBean> dataTelef = (ArrayList<TelefonoBean>)session.get("telefonosSocio");

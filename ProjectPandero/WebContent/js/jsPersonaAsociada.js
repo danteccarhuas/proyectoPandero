@@ -8,6 +8,12 @@ $(document).ready(function(e){
 	});
 	
 	
+	/*Validar solo numero telefono*/
+	$('#txt_telefono').keypress(function(e){
+        var test = /^[\-]?[0-9]{1,7}?$/;
+        return test.test(this.value+String.fromCharCode(e.which));
+	});
+	
 	//Activar Panel DatosSocio y Desactivar Panel ConsultarSocio
 	$('#btn_nuevo').on('click', function () {		
 		 $('#tab1').prop( "disabled", true ).addClass('disabled');
@@ -16,6 +22,14 @@ $(document).ready(function(e){
 		 $('.nav-tabs > .active').prop( "disabled", true ).addClass('disabled').next('li').find('a').trigger('click');		
 		 $('#hiddenindaccion').val(1); 
 		 
+			//Mostramos el input type file
+			$('#txt_huella').show();
+			//$('#txt_firma').show();
+			$('.bootstrap-filestyle').show();
+			$('#txt_requisitos').show();
+			$('#canvas').show();
+			$('#color').show();
+			$('#bt-clear').show();
 		 
 		 /*Cambiar Name input documento*/
 		$('#txt_dni').attr('name', 'txt_dni');
@@ -48,15 +62,7 @@ $(document).ready(function(e){
 				'#cboProvincia, #cboDistrito').prop('disabled',false);
 			/*ocultar el textarea de motivo de actuazacion de socio*/
 		 $('#txt_motivo_actualizacion').hide();
-		 
-		//Mostramos el input type file
-		$('#txt_huella').show();
-		//$('#txt_firma').show();
-		$('#txt_requisitos').show();
-		$('#canvas').show();
-		$('#color').show();
-		$('#bt-clear').show();
-		
+		 		
 		/*Limpiar Firma*/
 		resetCanvas();
 		
@@ -932,9 +938,6 @@ $(document).ready(function(e){
 				var DescargarHuella=document.getElementById("btnDescargarHuella");
 				DescargarHuella.href = "descargarHuella?idsocio="+data.idsocio;
 				
-				/*var DescargarFirma=document.getElementById("btnDescargarFirma");
-				DescargarFirma.href = "descargarFirma?idsocio="+data.idsocio;*/
-				
 				var DescargarReqAsociarse=document.getElementById("btnDescargarReqAsociarse");
 				DescargarReqAsociarse.href = "descargarReqAsociarse?idsocio="+data.idsocio;
 				
@@ -1189,18 +1192,10 @@ $(window).load(function() {
 	//Verificar si Panel Consultar Socio esta Checked
 	$('#tab1:checked')?initGrilla():
 
-	/*
-	 			 $('#tab1').prop( "disabled", true ).addClass('disabled');
-		 $('#tab2').prop( "disabled", false ).removeClass('disabled');
-		 $('#eventotab2primary').prop( "disabled", false ).removeClass('disabled');/*Quitamos el disabled del tab eventotab2primary
-		 $('.nav-tabs > .active').prop( "disabled", true ).addClass('disabled').next('li').find('a').trigger('click');		
-		 $('#hiddenindaccion').val(1); 
-	  */
-	
 	
 	//Listar Telefonos, Direccion si hay data
-	ObtenerTodosTelefonos();
 	ObtenerTodosDirecciones();
+	ObtenerTodosTelefonos();
 	
 	/*Desabilitamos el tab eventotab2primary*/
 	$('#eventotab2primary').click(function(event){
@@ -1271,7 +1266,6 @@ $(window).load(function() {
 			alert("Error details: " + thrownError);
 		}
 	});
-	
 });
 
 
@@ -1279,7 +1273,7 @@ $(window).load(function() {
 function ObtenerTodosTelefonos(){
 	$.ajax({
 		url:'listTelefonos.action',
-		type:'post',
+		type:'POST',
 		data:{},
 		contentType: "application/json; charset=utf-8",
 		dataType:'json',
@@ -1325,10 +1319,8 @@ function ObtenerTodosDirecciones(){
 		dataType:'json',
 		cache :  false , 
 		success:function(result){
-			var resultado=eval(result);
-			//var resutado=parseJSON(result); 
 	
-			ListarDirecciones(resultado);
+			ListarDirecciones(result);
 			
 		},
 		error : function(xhr, ajaxOptions, thrownError) {

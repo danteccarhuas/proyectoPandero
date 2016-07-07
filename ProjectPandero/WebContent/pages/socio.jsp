@@ -233,7 +233,7 @@
 											<div class="col-lg-9">
 												<div class="input-group">
 													<input class="form-control" type="text" id="txt_telefono"
-														name="txt_telefono" placeholder="Teléfono" /><span
+														 name="txt_telefono" placeholder="Teléfono" /><span
 														class="input-group-addon span_agregar_guarda_telefono"><i
 														class="glyphicon glyphicon-floppy-disk"></i></span>
 												</div>
